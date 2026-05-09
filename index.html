@@ -143,11 +143,19 @@
         /* Menú móvil: despliegue desde el header (estilo panel full-width) */
         #mobileMenuPanel {
             --mobile-nav-top: 5.5rem;
+            --mobile-nav-max-h: calc(100dvh - var(--mobile-nav-top) - 0.75rem - env(safe-area-inset-bottom, 0px));
+            --mobile-nav-footer-h: 88px;
         }
         #mobileMenuPanel .mobile-menu-sheet {
             transform: translateY(-100%);
             transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
             will-change: transform;
+            max-height: var(--mobile-nav-max-h);
+            height: fit-content;
+        }
+        #mobileMenuPanel .mobile-menu-scroll {
+            max-height: calc(var(--mobile-nav-max-h) - var(--mobile-nav-footer-h));
+            overflow-y: auto;
         }
         #mobileMenuPanel.is-open .mobile-menu-sheet {
             transform: translateY(0);
@@ -307,8 +315,8 @@
 
     <!-- Mobile Menu fuera del nav: fixed debe anclar al viewport (backdrop-blur en el nav rompía el posicionamiento) -->
     <div id="mobileMenuPanel" class="fixed bottom-0 left-0 right-0 z-[100] hidden overflow-hidden px-3 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] lg:hidden" style="top: var(--mobile-nav-top, 5.5rem);" aria-hidden="true">
-        <div class="mobile-menu-sheet flex h-full min-h-0 max-h-full flex-col overflow-hidden rounded-2xl border border-gray-200/90 bg-white shadow-[0_12px_48px_rgba(0,0,0,0.12)] ring-1 ring-black/5">
-            <nav class="min-h-0 flex-1 overflow-y-auto overscroll-y-contain pt-1 [scrollbar-gutter:stable]">
+        <div class="mobile-menu-sheet flex min-h-0 flex-col overflow-hidden rounded-2xl border border-gray-200/90 bg-white shadow-[0_12px_48px_rgba(0,0,0,0.12)] ring-1 ring-black/5">
+            <nav class="mobile-menu-scroll overscroll-y-contain pt-1 [scrollbar-gutter:stable]">
                 <a href="el_instituto.html" class="block border-b border-gray-200 px-4 py-4 text-base font-semibold text-gray-900 active:bg-gray-50">La Academia</a>
                 <details class="mobile-nav-details border-b border-gray-200">
                     <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-4 text-base font-semibold text-gray-900 [&::-webkit-details-marker]:hidden">
@@ -324,7 +332,7 @@
                 </details>
                 <a href="blog_t.html" class="block border-b border-gray-200 px-4 py-4 text-base font-semibold text-gray-900 active:bg-gray-50">Biblioteca</a>
             </nav>
-            <div class="shrink-0 border-t border-gray-200 bg-white p-4 pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
+            <div id="mobileMenuFooter" class="shrink-0 border-t border-gray-200 bg-white p-4 pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
                 <a href="iniciar_estudios.html" class="flex w-full items-center justify-center rounded-xl bg-gray-900 py-4 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-gray-800">Consulta</a>
             </div>
         </div>
@@ -1468,16 +1476,31 @@ document.addEventListener("DOMContentLoaded", () => {
       panel.style.setProperty('--mobile-nav-top', Math.max(0, bottom) + 'px');
     }
 
+    function updateMobileNavMetrics() {
+      if (!panel || !header) return;
+      var top = Math.max(0, header.getBoundingClientRect().bottom);
+      panel.style.setProperty('--mobile-nav-top', top + 'px');
+
+      var available = window.innerHeight - top - 12;
+      panel.style.setProperty('--mobile-nav-max-h', Math.max(240, available) + 'px');
+
+      var footer = document.getElementById('mobileMenuFooter');
+      if (footer) {
+        panel.style.setProperty('--mobile-nav-footer-h', Math.max(0, footer.getBoundingClientRect().height) + 'px');
+      }
+    }
+
     function setMenuOpen(open) {
       if (!panel || !openBtn) return;
       window.clearTimeout(closeTimer);
       if (sheet) sheet.removeEventListener('transitionend', sheetTransitionEnd);
       if (open) {
-        updateMobileNavTop();
+        updateMobileNavMetrics();
         panel.classList.remove('hidden');
         panel.offsetHeight;
         requestAnimationFrame(function () {
           panel.classList.add('is-open');
+          updateMobileNavMetrics();
         });
         openBtn.setAttribute('aria-expanded', 'true');
         panel.setAttribute('aria-hidden', 'false');
@@ -1522,10 +1545,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === 'Escape' && panel && !panel.classList.contains('hidden')) setMenuOpen(false);
     });
     window.addEventListener('resize', function () {
-      if (panel && !panel.classList.contains('hidden')) updateMobileNavTop();
+      if (panel && !panel.classList.contains('hidden')) updateMobileNavMetrics();
     });
     window.addEventListener('orientationchange', function () {
-      window.setTimeout(updateMobileNavTop, 200);
+      window.setTimeout(updateMobileNavMetrics, 200);
     });
   });
 </script>

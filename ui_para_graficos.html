@@ -214,10 +214,34 @@
         .bg_courses_6 { background-color: #ddd6fedb; }
         .bg_courses_7 { background-color: #f5d0fed9; }
         .bg_courses_8 { background-color: #d9f99dc9; }
+
+        /* Menú móvil: despliegue desde el header (estilo panel full-width) */
+        #mobileMenuPanel {
+            --mobile-nav-top: 5.5rem;
+            --mobile-nav-max-h: calc(100dvh - var(--mobile-nav-top) - 0.75rem - env(safe-area-inset-bottom, 0px));
+            --mobile-nav-footer-h: 88px;
+        }
+        #mobileMenuPanel .mobile-menu-sheet {
+            transform: translateY(-100%);
+            transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+            will-change: transform;
+            max-height: var(--mobile-nav-max-h);
+            height: fit-content;
+        }
+        #mobileMenuPanel .mobile-menu-scroll {
+            max-height: calc(var(--mobile-nav-max-h) - var(--mobile-nav-footer-h));
+            overflow-y: auto;
+        }
+        #mobileMenuPanel.is-open .mobile-menu-sheet {
+            transform: translateY(0);
+        }
+        details.mobile-nav-details[open] .mobile-nav-chevron {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="font-manrope bg-white" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
-    <header class="sticky top-0 z-50 pt-6 pb-3">
+    <header id="siteHeader" class="sticky top-0 z-50 pt-6 pb-3">
         <div class="container mx-auto px-4">
             <nav class="flex items-center justify-between text-sm font-normal bg-gray-200/60 py-3 pl-2 pr-4 backdrop-blur-md rounded-xl">
                 <div class="flex items-center space-x-3">
@@ -298,12 +322,37 @@
                     <span>Consulta</span>
                     <i class="ti ti-arrow-up-right ml-2"></i>
                 </a>
-                <button class="lg:hidden p-2">
-                    <i class="ti ti-menu-2 text-2xl"></i>
+                <button type="button" id="mobileMenuButton" class="lg:hidden flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-gray-800 transition-colors hover:bg-gray-100/90" aria-expanded="false" aria-controls="mobileMenuPanel" aria-label="Abrir menú de navegación">
+                    <i id="mobileMenuButtonIcon" class="ti ti-menu-2 text-2xl" aria-hidden="true"></i>
                 </button>
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Menu fuera del nav: fixed debe anclar al viewport -->
+    <div id="mobileMenuPanel" class="fixed bottom-0 left-0 right-0 z-[100] hidden overflow-hidden px-3 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] lg:hidden" style="top: var(--mobile-nav-top, 5.5rem);" aria-hidden="true">
+        <div class="mobile-menu-sheet flex min-h-0 flex-col overflow-hidden rounded-2xl border border-gray-200/90 bg-white shadow-[0_12px_48px_rgba(0,0,0,0.12)] ring-1 ring-black/5">
+            <nav class="mobile-menu-scroll overscroll-y-contain pt-1 [scrollbar-gutter:stable]">
+                <a href="el_instituto.html" class="block border-b border-gray-200 px-4 py-4 text-base font-semibold text-gray-900 active:bg-gray-50">La Academia</a>
+                <details class="mobile-nav-details border-b border-gray-200">
+                    <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-4 text-base font-semibold text-gray-900 [&::-webkit-details-marker]:hidden">
+                        <span>Negocios y Finanzas</span>
+                        <i class="ti ti-chevron-down mobile-nav-chevron text-xl text-gray-500 transition-transform duration-200" aria-hidden="true"></i>
+                    </summary>
+                    <div class="border-t border-gray-100 bg-gray-50/70">
+                        <a href="economia_digital.html" class="block border-b border-gray-100 px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Economía Digital</a>
+                        <a href="digital_empower.html" class="block border-b border-gray-100 px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Digital Empower</a>
+                        <a href="edufintech.html" class="block border-b border-gray-100 px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Edufintech</a>
+                        <a href="economia_digital.html" class="block px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Mercados Financieros</a>
+                    </div>
+                </details>
+                <a href="blog_t.html" class="block border-b border-gray-200 px-4 py-4 text-base font-semibold text-gray-900 active:bg-gray-50">Biblioteca</a>
+            </nav>
+            <div id="mobileMenuFooter" class="shrink-0 border-t border-gray-200 bg-white p-4 pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
+                <a href="iniciar_estudios.html" class="flex w-full items-center justify-center rounded-xl bg-gray-900 py-4 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-gray-800">Consulta</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Course Details Section -->
     <section class="bg-gray-50 py-8">
@@ -631,5 +680,107 @@
             });
         });
     </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var openBtn = document.getElementById('mobileMenuButton');
+    var menuIcon = document.getElementById('mobileMenuButtonIcon');
+    var panel = document.getElementById('mobileMenuPanel');
+    var header = document.getElementById('siteHeader');
+    var sheet = panel && panel.querySelector('.mobile-menu-sheet');
+    var closeTimer;
+    var sheetTransitionEnd = function (e) {
+      if (!panel || e.propertyName !== 'transform') return;
+      window.clearTimeout(closeTimer);
+      if (sheet) sheet.removeEventListener('transitionend', sheetTransitionEnd);
+      panel.classList.add('hidden');
+    };
+
+    function syncMenuButtonIcon(open) {
+      if (!menuIcon || !openBtn) return;
+      if (open) {
+        menuIcon.className = 'ti ti-x text-2xl';
+        openBtn.setAttribute('aria-label', 'Cerrar menú');
+      } else {
+        menuIcon.className = 'ti ti-menu-2 text-2xl';
+        openBtn.setAttribute('aria-label', 'Abrir menú de navegación');
+      }
+    }
+
+    function updateMobileNavMetrics() {
+      if (!panel || !header) return;
+      var top = Math.max(0, header.getBoundingClientRect().bottom);
+      panel.style.setProperty('--mobile-nav-top', top + 'px');
+
+      var available = window.innerHeight - top - 12;
+      panel.style.setProperty('--mobile-nav-max-h', Math.max(240, available) + 'px');
+
+      var footer = document.getElementById('mobileMenuFooter');
+      if (footer) {
+        panel.style.setProperty('--mobile-nav-footer-h', Math.max(0, footer.getBoundingClientRect().height) + 'px');
+      }
+    }
+
+    function setMenuOpen(open) {
+      if (!panel || !openBtn) return;
+      window.clearTimeout(closeTimer);
+      if (sheet) sheet.removeEventListener('transitionend', sheetTransitionEnd);
+      if (open) {
+        updateMobileNavMetrics();
+        panel.classList.remove('hidden');
+        panel.offsetHeight;
+        requestAnimationFrame(function () {
+          panel.classList.add('is-open');
+          updateMobileNavMetrics();
+        });
+        openBtn.setAttribute('aria-expanded', 'true');
+        panel.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        syncMenuButtonIcon(true);
+      } else {
+        if (panel.classList.contains('hidden')) return;
+        panel.classList.remove('is-open');
+        openBtn.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        syncMenuButtonIcon(false);
+        function sealClosed() {
+          window.clearTimeout(closeTimer);
+          if (sheet) sheet.removeEventListener('transitionend', sheetTransitionEnd);
+          panel.classList.add('hidden');
+        }
+        if (sheet) {
+          sheet.addEventListener('transitionend', sheetTransitionEnd);
+          closeTimer = window.setTimeout(sealClosed, 350);
+        } else {
+          sealClosed();
+        }
+      }
+    }
+
+    function toggleMenu() {
+      if (!panel || panel.classList.contains('hidden') || !panel.classList.contains('is-open')) setMenuOpen(true);
+      else setMenuOpen(false);
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleMenu();
+      });
+    }
+    panel && panel.querySelectorAll('a[href]').forEach(function (link) {
+      link.addEventListener('click', function () { setMenuOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && panel && !panel.classList.contains('hidden')) setMenuOpen(false);
+    });
+    window.addEventListener('resize', function () {
+      if (panel && !panel.classList.contains('hidden')) updateMobileNavMetrics();
+    });
+    window.addEventListener('orientationchange', function () {
+      window.setTimeout(updateMobileNavMetrics, 200);
+    });
+  });
+</script>
 </body>
 </html>
