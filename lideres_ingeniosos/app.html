@@ -1443,6 +1443,7 @@
     { id: "game_retos_familiares", label: "Retos Familiares", img: "img/games/09.png", gradient: "linear-gradient(180deg, #F97316 0%, #FDBA74 100%)", cat: "Familia", retos: 5, diff: "Fácil" },
     { id: "game_ecofinanzas2", label: "EcoFinanzas", img: "img/games/10.png", gradient: "linear-gradient(180deg, #34D399 0%, #059669 100%)", cat: "Finanzas", retos: 22, diff: "Medio" },
     { id: "game_taller_creador", label: "Taller del Creador", img: "img/games/11.png", gradient: "linear-gradient(180deg, #10B981 0%, #3B82F6 100%)", cat: "Liderazgo", retos: 8, diff: "Medio" },
+    { id: "game_stop_palabras_finanzas", label: "¡Stop! Palabras y Finanzas", img: "img/games/12.png", gradient: "linear-gradient(180deg, #4ADE80 0%, #22C55E 100%)", cat: "Finanzas", retos: 15, diff: "Medio" },
   ];
   const diffColor = { "Fácil": "bg-green-100 text-green-700", "Medio": "bg-yellow-100 text-yellow-700", "Difícil": "bg-red-100 text-red-700", "Arcade": "bg-blue-100 text-blue-700" };
   const catColor = { "Geografía": "bg-blue-100 text-blue-700", "Liderazgo": "bg-purple-100 text-purple-700", "Ciencias": "bg-green-100 text-green-700", "Lenguaje": "bg-cyan-100 text-cyan-700", "Gramática": "bg-rose-100 text-rose-700", "Familia": "bg-amber-100 text-amber-700", "Finanzas": "bg-emerald-100 text-emerald-700" };
@@ -1590,6 +1591,7 @@
       'pages/game_retos_familiares.html': 'Tablero de Retos Familiares',
       'pages/game_ecofinanzas2.html': 'EcoFinanzas',
       'pages/game_taller_creador.html': 'Taller del Creador',
+      'pages/game_stop_palabras_finanzas.html': '¡Stop! Palabras y Finanzas',
     };
     title.innerText = gameTitle || names[url] || 'Juego';
     frame.src = url;
