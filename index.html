@@ -1017,15 +1017,15 @@
        
         
         <!-- Formulario -->
-        <form class="space-y-3 flex-grow flex flex-col">
+        <form id="cardAmarilloForm" class="space-y-3 flex-grow flex flex-col">
           <div>
             <label class="block text-md font-medium text-gray-800 mb-2">Nombre del padre/madre</label>
-            <input type="text" placeholder="Tu nombre completo" class="text-gray-900 w-full px-4 py-3 rounded-lg border-0 bg-yellow-500/90 focus:bg-yellow-500 focus:ring-2 focus:ring-yellow-900 transition-all text-sm">
+            <input type="text" id="nombrePadre" name="nombrePadre" placeholder="Tu nombre completo" class="placeholder-black/70 text-gray-900 w-full px-4 py-3 rounded-lg border-0 bg-yellow-500/90 focus:bg-yellow-500 focus:ring-2 focus:ring-yellow-900 transition-all text-sm" required>
           </div>
           
           <div>
             <label class="block text-md font-medium text-gray-800 mb-2">WhatsApp</label>
-            <input type="tel" placeholder="+58 424 000 0000" class="w-full px-4 py-3 rounded-lg border-0 bg-yellow-500/90 focus:bg-yellow-500 focus:ring-2 focus:ring-yellow-900 transition-all text-sm">
+            <input type="tel" id="whatsappPadre" name="whatsappPadre" placeholder="+58 424 000 0000" class="placeholder-black/70 text-gray-900 w-full px-4 py-3 rounded-lg border-0 bg-yellow-500/90 focus:bg-yellow-500 focus:ring-2 focus:ring-yellow-900 transition-all text-sm" required>
           </div>
           
           <button type="submit" class="w-full bg-gray-900 text-white py-4 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-gray-800 transition-all mt-auto text-sm">
@@ -1548,6 +1548,28 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('orientationchange', function () {
       window.setTimeout(updateMobileNavMetrics, 200);
     });
+
+    // Card Amarillo Form Handler
+    var cardAmarilloForm = document.getElementById('cardAmarilloForm');
+    if (cardAmarilloForm) {
+      cardAmarilloForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        var nombrePadre = document.getElementById('nombrePadre').value;
+        var whatsappPadre = document.getElementById('whatsappPadre').value;
+        
+        var whatsappMessage = 
+          '*Solicitud de Clase Gratis*%0A%0A' +
+          '*Nombre del padre/madre:* ' + nombrePadre + '%0A' +
+          '*WhatsApp:* ' + whatsappPadre + '%0A%0A' +
+          'Me gustaría agendar una clase de prueba para mi hijo.';
+        
+        var whatsappNumber = '584241529071';
+        var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + whatsappMessage;
+        
+        window.open(whatsappUrl, '_blank');
+      });
+    }
   });
 </script>
 </body>
