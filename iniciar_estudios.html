@@ -256,51 +256,55 @@
                     <h3 class="text-2xl font-bold text-gray-800 mb-2">Formulario de Inscripción</h3>
                     <p class="text-gray-600 mb-6">Complete el siguiente formulario para inscribirse en nuestros programas</p>
                     
-                    <form class="space-y-6">
+                    <form id="whatsappForm" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
-                                <input type="text" id="nombre" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="Ingrese su nombre completo">
+                                <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="Ingrese su nombre completo" required>
                             </div>
                             
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="ejemplo@correo.com">
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="ejemplo@correo.com" required>
                             </div>
                             
                             <div>
                                 <label for="telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
-                                <input type="tel" id="telefono" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="(+58) 424 152 9071">
+                                <input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="(+58) 424 152 9071" required>
                             </div>
                             
                             <div>
                                 <label for="pais" class="block text-sm font-medium text-gray-700 mb-1">País</label>
-                                <input type="text" id="pais" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="Venezuela">
+                                <input type="text" id="pais" name="pais" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="Venezuela" required>
                             </div>
                         </div>
                         
                         <div>
                             <label for="programa" class="block text-sm font-medium text-gray-700 mb-1">Programa de interés</label>
-                            <select id="programa" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition">
+                            <select id="programa" name="programa" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" required>
                                 <option value="">Seleccione un programa</option>
-                                <option value="economia_digital">Economía Digital</option>
-                                <option value="digital_empower">Digital Empower</option>
-                                <option value="edufintech">Edufintech</option>
-                                <option value="mercados_financieros">Mercados Financieros</option>
-                                <option value="diseno_ui">Diseño UI Básico</option>
-                                <option value="html_css">HTML & CSS para Creativos</option>
-                                <option value="diseno_maquetado_ia">Diseño y Maquetado con IA</option>
-                                <option value="diseno_productos">Diseño de Productos</option>
+                                <option value="Finanzas para familias">Finanzas para familias</option>
+                                <option value="Finanzas para Colegios">Finanzas para Colegios</option>
+                                <option value="Contabilidad con uso de IA">Contabilidad con uso de IA</option>
+                                <option value="Herramientas digitales">Herramientas digitales</option>
+                                <option value="Economía Digital">Economía Digital</option>
+                                <option value="Digital Empower">Digital Empower</option>
+                                <option value="Edufintech">Edufintech</option>
+                                <option value="Mercados Financieros">Mercados Financieros</option>
+                                <option value="Diseño UI Básico">Diseño UI Básico</option>
+                                <option value="HTML & CSS para Creativos">HTML & CSS para Creativos</option>
+                                <option value="Diseño y Maquetado con IA">Diseño y Maquetado con IA</option>
+                                <option value="Diseño de Productos">Diseño de Productos</option>
                             </select>
                         </div>
                         
                         <div>
                             <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-1">Mensaje o consulta</label>
-                            <textarea id="mensaje" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="Escriba cualquier consulta o información adicional que desee compartir..."></textarea>
+                            <textarea id="mensaje" name="mensaje" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" placeholder="Escriba cualquier consulta o información adicional que desee compartir..."></textarea>
                         </div>
                         
                         <div class="flex items-center">
-                            <input type="checkbox" id="terminos" class="w-4 h-4 text-orange-500 border-gray-300 rounded focus:ring-orange-500">
+                            <input type="checkbox" id="terminos" name="terminos" class="w-4 h-4 text-orange-500 border-gray-300 rounded focus:ring-orange-500" required>
                             <label for="terminos" class="ml-2 text-sm text-gray-600">
                                 Acepto los <a href="#" class="text-orange-500 hover:underline">términos y condiciones</a> y la <a href="#" class="text-orange-500 hover:underline">política de privacidad</a>
                             </label>
@@ -510,6 +514,35 @@
     window.addEventListener('orientationchange', function () {
       window.setTimeout(updateMobileNavMetrics, 200);
     });
+
+    // WhatsApp Form Handler
+    var whatsappForm = document.getElementById('whatsappForm');
+    if (whatsappForm) {
+      whatsappForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        var nombre = document.getElementById('nombre').value;
+        var email = document.getElementById('email').value;
+        var telefono = document.getElementById('telefono').value;
+        var pais = document.getElementById('pais').value;
+        var programa = document.getElementById('programa').value;
+        var mensaje = document.getElementById('mensaje').value;
+        
+        var whatsappMessage = 
+          '*Nueva Solicitud de Inscripción*%0A%0A' +
+          '*Nombre:* ' + nombre + '%0A' +
+          '*Email:* ' + email + '%0A' +
+          '*Teléfono:* ' + telefono + '%0A' +
+          '*País:* ' + pais + '%0A' +
+          '*Programa de interés:* ' + programa + '%0A' +
+          '*Mensaje:* ' + mensaje;
+        
+        var whatsappNumber = '584241529071';
+        var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + whatsappMessage;
+        
+        window.open(whatsappUrl, '_blank');
+      });
+    }
   });
 </script>
 </body>
