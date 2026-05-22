@@ -138,21 +138,35 @@
     </style>
 </head>
 <body class="font-['Inter'] bg-gray-100">
+
+     <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    <!-- Header Section -->
     <header id="siteHeader" class="sticky top-0 z-50 pt-6 pb-3">
         <div class="container mx-auto px-4">
-            <nav class="flex items-center justify-between text-sm font-normal bg-gray-200/60 py-3 pl-2 pr-4 backdrop-blur-md rounded-xl">
-                <div class="flex items-center space-x-3">
-                    <a href="index.html" class="flex items-center">
-                        <img src="img/logo_v.svg" alt="Visium Digital" class="ml-3 h-7">
-                    </a>
+
+
+
+            <nav class="flex items-center justify-between text-sm font-normal  bg-gray-200/60 py-3 pl-2 pr-4 backdrop-blur-md rounded-xl">
+                <!-- Logo -->
+
+
+  <div class="flex items-center space-x-3">
+                     <a href="index.html" class="flex items-center">
+                    <img src="img/logo_v.svg" alt="Visium Digital" class="ml-3 h-7">
+                </a>
                     <div class="hidden md:block border-l border-gray-300 h-6"></div>
                     <div class="hidden md:block">
-                        <div class="text-sm font-normal text-dark-800 leading-tight">Escuela de diseño</div>
-                        <div class="text-sm font-normal text-dark-800 leading-tight">e innovación</div>
+                        <div class="text-sm font-normal text-dark-800 leading-tight">Escuela de</div>
+                        <div class="text-sm font-normal text-dark-800 leading-tight">educación financiera</div>
                     </div>
                 </div>
+
+                <!-- Navigation Menu (Desktop) -->
                 <div class="hidden lg:flex items-center space-x-8">
-                    <a href="el_instituto.html" class="text-gray-700 hover:text-gray-900">El Instituto</a>
+                    <a href="el_instituto.html" class="text-gray-700 hover:text-gray-900">La Academia</a>
+
+                    <!-- Negocios y Finanzas Dropdown -->
                     <div class="relative group">
                         <button class="text-gray-700 hover:text-gray-900 flex items-center">
                             Negocios y Finanzas
@@ -160,73 +174,67 @@
                         </button>
                         <div class="absolute left-0 mt-2 w-[420px] bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden">
                             <div class="p-4 space-y-1">
-                                <a href="economia_digital.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                                <a href="finanzas_familias.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                                     <div class="w-10 h-10 bg_courses_5 rounded-lg flex items-center justify-center flex-shrink-0"><i class="ti ti-wallet text-gray-700"></i></div>
-                                    <div class="flex-1 min-w-0"><span class="font-medium text-gray-800 block">Economía Digital</span><span class="text-sm text-gray-500">Prepárate para el entorno digital</span></div>
+                                    <div class="flex-1 min-w-0">
+                                        <span class="font-medium text-gray-800 block">Finanzas para familias</span>
+                                        <span class="text-sm text-gray-500">Hábitos financieros</span>
+                                    </div>
                                     <i class="ti ti-arrow-right text-gray-400 flex-shrink-0"></i>
                                 </a>
-                                <a href="digital_empower.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                                <a href="finanzas_colegios.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                                     <div class="w-10 h-10 bg_courses_6 rounded-lg flex items-center justify-center flex-shrink-0"><i class="ti ti-coins text-gray-700"></i></div>
-                                    <div class="flex-1 min-w-0"><span class="font-medium text-gray-800 block">Digital Empower</span><span class="text-sm text-gray-500">Herramientas digitales</span></div>
+                                    <div class="flex-1 min-w-0">
+                                        <span class="font-medium text-gray-800 block">Finanzas para Colegios</span>
+                                        <span class="text-sm text-gray-500">Educación para primaria.</span>
+                                    </div>
                                     <i class="ti ti-arrow-right text-gray-400 flex-shrink-0"></i>
                                 </a>
-                                <a href="edufintech.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                                <a href="diseno_maquetado_ia_03.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                                     <div class="w-10 h-10 bg_courses_7 rounded-lg flex items-center justify-center flex-shrink-0"><i class="ti ti-pig-money text-gray-700"></i></div>
-                                    <div class="flex-1 min-w-0"><span class="font-medium text-gray-800 block">Edufintech</span><span class="text-sm text-gray-500">Educación financiera</span></div>
+                                    <div class="flex-1 min-w-0">
+                                        <span class="font-medium text-gray-800 block">Contabilidad con uso de IA</span>
+                                        <span class="text-sm text-gray-500">Automatiza procesos</span>
+                                    </div>
                                     <i class="ti ti-arrow-right text-gray-400 flex-shrink-0"></i>
                                 </a>
-                                <a href="economia_digital.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                                <a href="diseno_maquetado_ia_04.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                                     <div class="w-10 h-10 bg_courses_8 rounded-lg flex items-center justify-center flex-shrink-0"><i class="ti ti-file-spreadsheet text-gray-700"></i></div>
-                                    <div class="flex-1 min-w-0"><span class="font-medium text-gray-800 block">Mercados Financieros</span><span class="text-sm text-gray-500">Control y análisis</span></div>
+                                    <div class="flex-1 min-w-0">
+                                        <span class="font-medium text-gray-800 block">Herramientas digitales</span>
+                                        <span class="text-sm text-gray-500">Análisis de datos</span>
+                                    </div>
                                     <i class="ti ti-arrow-right text-gray-400 flex-shrink-0"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="relative group">
-                        <button class="text-gray-700 hover:text-gray-900 flex items-center">
-                            Diseño y Desarrollo
-                            <i class="ti ti-chevron-down ml-1 h-4 w-4 transition-transform group-hover:rotate-180"></i>
-                        </button>
-                        <div class="absolute left-0 mt-2 w-[420px] bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden">
-                            <div class="p-4 space-y-1">
-                                <a href="ui_para_graficos.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                    <div class="w-10 h-10 bg_courses_1 rounded-lg flex items-center justify-center flex-shrink-0"><i class="ti ti-icons text-gray-700"></i></div>
-                                    <div class="flex-1 min-w-0"><span class="font-medium text-gray-800 block">Diseño UI: Balance Funcional</span><span class="text-sm text-gray-500">Diseño UI básico con Figma</span></div>
-                                    <i class="ti ti-arrow-right text-gray-400 flex-shrink-0"></i>
-                                </a>
-                                <a href="html_css_graficos.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                    <div class="w-10 h-10 bg_courses_2 rounded-lg flex items-center justify-center flex-shrink-0"><i class="ti ti-brand-html5 text-gray-700"></i></div>
-                                    <div class="flex-1 min-w-0"><span class="font-medium text-gray-800 block">HTML & CSS para Creativos</span><span class="text-sm text-gray-500">HTML y CSS con IA: diseño UI/UX</span></div>
-                                    <i class="ti ti-arrow-right text-gray-400 flex-shrink-0"></i>
-                                </a>
-                                <a href="diseno_maquetado_ia.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                    <div class="w-10 h-10 bg_courses_3 rounded-lg flex items-center justify-center flex-shrink-0"><i class="ti ti-code text-gray-700"></i></div>
-                                    <div class="flex-1 min-w-0"><span class="font-medium text-gray-800 block">Diseño y Maquetado con IA</span><span class="text-sm text-gray-500">IA en tu proceso creativo</span></div>
-                                    <i class="ti ti-arrow-right text-gray-400 flex-shrink-0"></i>
-                                </a>
-                                <a href="diseno_productos.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                    <div class="w-10 h-10 bg_courses_4 rounded-lg flex items-center justify-center flex-shrink-0"><i class="ti ti-vector-bezier text-gray-700"></i></div>
-                                    <div class="flex-1 min-w-0"><span class="font-medium text-gray-800 block">Diseño de Productos</span><span class="text-sm text-gray-500">Diseño digital avanzado</span></div>
-                                    <i class="ti ti-arrow-right text-gray-400 flex-shrink-0"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+
                     <a href="blog_t.html" class="text-gray-700 hover:text-gray-900 font-medium opacity-90">Biblioteca</a>
                 </div>
-                <a href="iniciar_estudios.html" class="bg-gray-900 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full flex items-center transition-colors">
-                    <span>Consulta</span>
-                    <i class="ti ti-arrow-up-right ml-2"></i>
-                </a>
-                <button type="button" id="mobileMenuButton" class="lg:hidden flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-gray-800 transition-colors hover:bg-gray-100/90" aria-expanded="false" aria-controls="mobileMenuPanel" aria-label="Abrir menú de navegación">
-                    <i id="mobileMenuButtonIcon" class="ti ti-menu-2 text-2xl" aria-hidden="true"></i>
-                </button>
+
+                <!-- CTA (escritorio) + menú móvil -->
+                <div class="flex items-center gap-1 shrink-0">
+                    <a href="iniciar_estudios.html" class="hidden lg:flex bg-gray-900 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full items-center transition-colors">
+                        <span>Consulta</span>
+                        <i class="ti ti-arrow-up-right ml-2"></i>
+                    </a>
+                    <button type="button" id="mobileMenuButton" class="lg:hidden flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-gray-800 transition-colors hover:bg-gray-100/90" aria-expanded="false" aria-controls="mobileMenuPanel" aria-label="Abrir menú de navegación">
+                        <i id="mobileMenuButtonIcon" class="ti ti-menu-2 text-2xl" aria-hidden="true"></i>
+                    </button>
+                </div>
             </nav>
+
+
+
+
+
+
+
         </div>
     </header>
 
-    <!-- Mobile Menu fuera del nav: fixed debe anclar al viewport -->
+    <!-- Mobile Menu fuera del nav: fixed debe anclar al viewport (backdrop-blur en el nav rompía el posicionamiento) -->
     <div id="mobileMenuPanel" class="fixed bottom-0 left-0 right-0 z-[100] hidden overflow-hidden px-3 pb-[max(0.75rem,env(safe-area-inset-bottom,0px))] lg:hidden" style="top: var(--mobile-nav-top, 5.5rem);" aria-hidden="true">
         <div class="mobile-menu-sheet flex min-h-0 flex-col overflow-hidden rounded-2xl border border-gray-200/90 bg-white shadow-[0_12px_48px_rgba(0,0,0,0.12)] ring-1 ring-black/5">
             <nav class="mobile-menu-scroll overscroll-y-contain pt-1 [scrollbar-gutter:stable]">
@@ -237,10 +245,10 @@
                         <i class="ti ti-chevron-down mobile-nav-chevron text-xl text-gray-500 transition-transform duration-200" aria-hidden="true"></i>
                     </summary>
                     <div class="border-t border-gray-100 bg-gray-50/70">
-                        <a href="economia_digital.html" class="block border-b border-gray-100 px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Economía Digital</a>
-                        <a href="digital_empower.html" class="block border-b border-gray-100 px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Digital Empower</a>
-                        <a href="edufintech.html" class="block border-b border-gray-100 px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Edufintech</a>
-                        <a href="economia_digital.html" class="block px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Mercados Financieros</a>
+                        <a href="finanzas_familias.html" class="block border-b border-gray-100 px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Finanzas para familias</a>
+                        <a href="finanzas_colegios.html" class="block border-b border-gray-100 px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Finanzas para Colegios</a>
+                        <a href="diseno_maquetado_ia_03.html" class="block border-b border-gray-100 px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Contabilidad con IA</a>
+                        <a href="diseno_maquetado_ia_04.html" class="block px-4 py-3.5 pl-5 text-[0.9375rem] font-medium text-gray-800 active:bg-white">Herramientas digitales</a>
                     </div>
                 </details>
                 <a href="blog_t.html" class="block border-b border-gray-200 px-4 py-4 text-base font-semibold text-gray-900 active:bg-gray-50">Biblioteca</a>
